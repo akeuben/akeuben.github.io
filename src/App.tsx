@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import About from './components/about';
+import Projects from './components/projects';
+import Stats from './components/stats';
+import './style.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+	return<>
+		<Header />
+		<Background />
+		<About>
+			<Stats />
+			<Projects />
+		</About>
+	</>
+}
+
+const Background = () => {
+	return <>
+		<div className="background"></div>
+	</>
+}
+
+const Header = () => {
+	return <>
+		<header>
+			<h2 id="logo">Avery Keuben</h2>
+			<a className="headerLink" href="#about">About</a>
+			<a className="headerLink" href="#projects">Projects</a>
+			<a className="headerLink" href="https://www.github.com/Kappabyte">GitHub</a>
+		</header>
+	</>
 }
 
 export default App;
