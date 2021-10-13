@@ -7,13 +7,16 @@ export class Mesh {
     private textureCoords: vec2[];
     private normals: vec3[];
 
+    private colours: vec3[] | undefined;
+
     public indicies: number[];
 
-    constructor(vertices: vec3[], indicies: number[], textureCoords: vec2[] = [], normals: vec3[] = []) {
+    constructor(vertices: vec3[], indicies: number[], textureCoords: vec2[] = [], normals: vec3[] = [], colours?: vec3[]) {
         this.vertices = vertices;
         this.indicies = indicies;
         this.textureCoords = textureCoords;
         this.normals = normals;
+        this.colours = colours;
     }
 
     public getVerticesBuffer(gl: WebGL2RenderingContext) {
@@ -64,6 +67,23 @@ export class Mesh {
         let buffer: WebGLBuffer = gl.createBuffer() as WebGLBuffer;
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Int32Array(this.indicies), gl.STATIC_DRAW)
+
+        return buffer;
+    }
+
+    public getColoursBuffer(gl: WebGL2RenderingContext) {
+        if(!this.colours) return null;
+        let buffer: WebGLBuffer = gl.createBuffer() as WebGLBuffer;
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        let colours: number[] = [];
+        for(let i = 0; i < this.colours.length; i++) {
+            if(!this.colours[i]) continue;
+            colours[i * 3] = this.colours[i][0];
+            colours[i * 3 + 1] = this.colours[i][1];
+            colours[i * 3 + 2] = this.colours[i][2];
+        }
+        console.log(colours);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colours), gl.STATIC_DRAW)
 
         return buffer;
     }
@@ -154,6 +174,15 @@ export default class Object {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.mesh.getTextureCoordinatesBuffer(gl));
         gl.vertexAttribPointer(this.shader.getAttributeLocation(gl, "a_TexCoords"), 2, gl.FLOAT, true, 0, 0);
         gl.enableVertexAttribArray(this.shader.getAttributeLocation(gl, "a_TexCoords"));
+
+        let colourBuffer = this.mesh.getColoursBuffer(gl);
+
+        if(colourBuffer) {
+            gl.bindBuffer(gl.ARRAY_BUFFER, colourBuffer);
+            console.log(this.shader.getAttributeLocation(gl, "a_Colours"));
+            gl.vertexAttribPointer(this.shader.getAttributeLocation(gl, "a_Colours"), 3, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(this.shader.getAttributeLocation(gl, "a_Colours"));
+        }
         
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.mesh.getIndiciesBuffer(gl));
         gl.drawElements(gl.TRIANGLES, this.mesh.indicies.length, gl.UNSIGNED_INT, 0);
