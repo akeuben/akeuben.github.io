@@ -1,0 +1,32 @@
+header {
+    width: 100vw;
+    height: 64px;
+    background-color: #12121288;
+    backdrop-filter: blur(10px);
+    transition: background-color 0.5s ease-in-out;
+    position: sticky;
+    top: 0px;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+    color: white;
+    padding-top: 7px;
+}
+
+header.full {
+    position: absolute;
+    background-color: transparent;
+    transition: background-color 0.5s ease-in-out;
+    width: 100vw;
+    height: 100vh;
+}
+
+header.full>h1 {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    vertical-align: middle;
+    transition: 1s;
+}

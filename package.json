@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "portfolio-site",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,8 @@
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
+    "gl-matrix": "^3.3.0",
+    "obj-file-parser": "^0.5.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -40,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/obj-file-parser": "^0.5.0"
   }
 }
