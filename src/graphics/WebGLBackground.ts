@@ -1,9 +1,6 @@
-import { quat } from "gl-matrix";
-import ModelLoader from "./ModelLoader";
 import Camera from "./objects/Camera";
-import Object, { Mesh, Transform } from "./objects/Object";
-import Shader from "./shaders/Shader";
-import TestShader from "./shaders/TestShader";
+import Earth from "./objects/Earth";
+import Object from "./objects/Object";
 
 export default class WebGLBackground {
 
@@ -22,17 +19,11 @@ export default class WebGLBackground {
         this.legacyRender = this.gl == null;
 
         this.camera = new Camera(this.canvas.width, this.canvas.height);
-        this.camera.setPosition([0, 0, 1]);
+        this.camera.setPosition([0, 0, 0]);
 
         this.gl?.enable(this.gl.DEPTH_TEST);
 
-        ModelLoader.loadMesh("Earth").then(mesh => {
-            var transform = new Transform();
-            transform.setPosition([0, 0, -3]);
-            let object = new Object(transform, mesh, TestShader(this.gl as WebGL2RenderingContext));
-    
-            this.scene.push(object);
-        });
+        this.scene.push(new Earth(this.gl as WebGL2RenderingContext));
     }
 
     public onResize() {

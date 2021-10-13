@@ -7,7 +7,6 @@ function Header() {
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
-            console.log(window.scrollY);
             setFull(window.scrollY < window.innerHeight - 64);
         });
     }, []);
@@ -15,10 +14,6 @@ function Header() {
     return <header className={full ? "full" : undefined}>
         <h1>Avery Keuben</h1>
     </header>
-}
-
-function handleScroll() {
-
 }
 
 export default Header;

@@ -1,5 +1,6 @@
 import { mat4, quat, vec2, vec3 } from "gl-matrix";
 import Shader from "../shaders/Shader";
+import Texture from "../Texture";
 import Camera from "./Camera";
 
 export class Mesh {
@@ -7,16 +8,13 @@ export class Mesh {
     private textureCoords: vec2[];
     private normals: vec3[];
 
-    private colours: vec3[] | undefined;
-
     public indicies: number[];
 
-    constructor(vertices: vec3[], indicies: number[], textureCoords: vec2[] = [], normals: vec3[] = [], colours?: vec3[]) {
+    constructor(vertices: vec3[], indicies: number[], textureCoords: vec2[] = [], normals: vec3[] = []) {
         this.vertices = vertices;
         this.indicies = indicies;
         this.textureCoords = textureCoords;
         this.normals = normals;
-        this.colours = colours;
     }
 
     public getVerticesBuffer(gl: WebGL2RenderingContext) {
@@ -70,23 +68,6 @@ export class Mesh {
 
         return buffer;
     }
-
-    public getColoursBuffer(gl: WebGL2RenderingContext) {
-        if(!this.colours) return null;
-        let buffer: WebGLBuffer = gl.createBuffer() as WebGLBuffer;
-        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-        let colours: number[] = [];
-        for(let i = 0; i < this.colours.length; i++) {
-            if(!this.colours[i]) continue;
-            colours[i * 3] = this.colours[i][0];
-            colours[i * 3 + 1] = this.colours[i][1];
-            colours[i * 3 + 2] = this.colours[i][2];
-        }
-        console.log(colours);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colours), gl.STATIC_DRAW)
-
-        return buffer;
-    }
 }
 
 export class Transform {
@@ -111,6 +92,13 @@ export class Transform {
 
     public setRotation(rotation: quat) {
         this.rotation = rotation;
+        this.recalculateMatrix();
+    }
+
+    public addRotation(rotation: vec3) {
+        quat.rotateX(this.rotation, this.rotation, rotation[0]);
+        quat.rotateY(this.rotation, this.rotation, rotation[1]);
+        quat.rotateZ(this.rotation, this.rotation, rotation[2]);
         this.recalculateMatrix();
     }
 
@@ -139,19 +127,33 @@ export class Transform {
 
     private recalculateMatrix() {
         mat4.identity(this.matrix);
-        mat4.fromRotationTranslationScale(this.matrix, this.rotation, this.position, this.scale);
+        mat4.translate(this.matrix, this.matrix, this.position);
+        let rot = mat4.create();
+        mat4.fromQuat(rot, this.rotation);
+        mat4.mul(this.matrix, this.matrix, rot);
+        mat4.scale(this.matrix, this.matrix, this.scale);
     }
 }
 
 export default class Object {
     private readonly transform: Transform;
     private mesh: Mesh;
+    private texture: Texture | undefined;
     private shader: Shader;
 
-    constructor(transform: Transform, mesh: Mesh, shader: Shader) {
+    constructor(transform: Transform, mesh: Mesh | Promise<Mesh>, shader: Shader, texture?: Texture) {
         this.transform = transform;
-        this.mesh = mesh;
+        if(mesh instanceof Mesh) {
+            this.mesh = mesh;
+        } else {
+            this.mesh = new Mesh([], [], [], []);
+            mesh.then((mesh) => {
+                this.mesh = mesh;
+            })
+        }
         this.shader = shader;
+
+        this.texture = texture;
     }
 
     public Update() {};
@@ -161,8 +163,14 @@ export default class Object {
         this.shader.bind(gl);
 
         gl.uniformMatrix4fv(this.shader.getUniformLocation(gl, "u_ProjectionMatrix"), false, camera.getProjectionMatrix());
-        gl.uniformMatrix4fv(this.shader.getUniformLocation(gl, "u_ModelViewMatrix"), false, this.transform.getModelViewMatrix(camera))
-        
+        gl.uniformMatrix4fv(this.shader.getUniformLocation(gl, "u_ModelViewMatrix"), false, this.transform.getModelViewMatrix(camera));
+
+        if(this.texture) {
+            gl.activeTexture(gl.TEXTURE0);
+            this.texture.bind(gl);
+            gl.uniform1i(this.shader.getUniformLocation(gl, "u_Sampler"), 0);
+        }
+
         gl.bindBuffer(gl.ARRAY_BUFFER, this.mesh.getVerticesBuffer(gl));
         gl.vertexAttribPointer(this.shader.getAttributeLocation(gl, "a_Vertices"), 3, gl.FLOAT, true, 0, 0);
         gl.enableVertexAttribArray(this.shader.getAttributeLocation(gl, "a_Vertices"));
@@ -174,15 +182,6 @@ export default class Object {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.mesh.getTextureCoordinatesBuffer(gl));
         gl.vertexAttribPointer(this.shader.getAttributeLocation(gl, "a_TexCoords"), 2, gl.FLOAT, true, 0, 0);
         gl.enableVertexAttribArray(this.shader.getAttributeLocation(gl, "a_TexCoords"));
-
-        let colourBuffer = this.mesh.getColoursBuffer(gl);
-
-        if(colourBuffer) {
-            gl.bindBuffer(gl.ARRAY_BUFFER, colourBuffer);
-            console.log(this.shader.getAttributeLocation(gl, "a_Colours"));
-            gl.vertexAttribPointer(this.shader.getAttributeLocation(gl, "a_Colours"), 3, gl.FLOAT, false, 0, 0);
-            gl.enableVertexAttribArray(this.shader.getAttributeLocation(gl, "a_Colours"));
-        }
         
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.mesh.getIndiciesBuffer(gl));
         gl.drawElements(gl.TRIANGLES, this.mesh.indicies.length, gl.UNSIGNED_INT, 0);

@@ -1,4 +1,4 @@
-import { createRef, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import WebGLBackground from "../graphics/WebGLBackground";
 import "./Background.css"
 
@@ -9,8 +9,6 @@ function Background() {
     let [backgroundEffect, setBackgroundEffect] = useState<WebGLBackground | null>(null);
 
     const draw = () => {
-        console.log("draw");
-
         backgroundEffect?.update();
     }
 
@@ -41,6 +39,7 @@ function Background() {
         return () => {
             window.cancelAnimationFrame(animationFrameId)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [draw])
 
     return <canvas id="background" width={window.innerWidth} height={window.innerHeight} ref={canvas}>
