@@ -1,6 +1,8 @@
 import Camera from "./objects/Camera";
+import CameraController from "./objects/CameraController";
 import Earth from "./objects/Earth";
 import Object from "./objects/Object";
+import Star from "./objects/Star";
 
 export default class WebGLBackground {
 
@@ -24,6 +26,8 @@ export default class WebGLBackground {
         this.gl?.enable(this.gl.DEPTH_TEST);
 
         this.scene.push(new Earth(this.gl as WebGL2RenderingContext));
+        this.scene.push(new CameraController(this.gl as WebGL2RenderingContext));
+        this.scene.push(Star.create(this.gl as WebGL2RenderingContext));
     }
 
     public onResize() {

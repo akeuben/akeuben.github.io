@@ -1,4 +1,5 @@
 import { mat4, quat, vec2, vec3 } from "gl-matrix";
+import { createModuleResolutionCache, textChangeRangeIsUnchanged } from "typescript";
 import Shader from "../shaders/Shader";
 import Texture from "../Texture";
 import Camera from "./Camera";
@@ -90,8 +91,13 @@ export class Transform {
         return this.position;
     }
 
-    public setRotation(rotation: quat) {
-        this.rotation = rotation;
+    public setRotation(rotation: quat | vec3) {
+        if(rotation.length === 4) {
+            this.rotation = rotation;
+        } else if(rotation.length === 3) {
+            quat.identity(this.rotation);
+            this.addRotation(rotation);
+        }
         this.recalculateMatrix();
     }
 
@@ -117,12 +123,6 @@ export class Transform {
 
     public getMatrix() {
         return this.matrix;
-    }
-
-    public getModelViewMatrix(camera: Camera) {
-        let out: mat4 = mat4.create();
-        mat4.mul(out, this.matrix, camera.getViewMatrix());
-        return out;
     }
 
     private recalculateMatrix() {
@@ -163,7 +163,8 @@ export default class Object {
         this.shader.bind(gl);
 
         gl.uniformMatrix4fv(this.shader.getUniformLocation(gl, "u_ProjectionMatrix"), false, camera.getProjectionMatrix());
-        gl.uniformMatrix4fv(this.shader.getUniformLocation(gl, "u_ModelViewMatrix"), false, this.transform.getModelViewMatrix(camera));
+        gl.uniformMatrix4fv(this.shader.getUniformLocation(gl, "u_ModelMatrix"), false, this.transform.getMatrix());
+        gl.uniformMatrix4fv(this.shader.getUniformLocation(gl, "u_ViewMatrix"), false, camera.getViewMatrix());
 
         if(this.texture) {
             gl.activeTexture(gl.TEXTURE0);

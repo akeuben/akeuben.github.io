@@ -3,15 +3,15 @@ import "./Header.css";
 
 function Header() {
 
-    let [full, setFull] = useState(false);
+    let [full, setFull] = useState(true);
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
-            setFull(window.scrollY < window.innerHeight - 64);
+            setFull(window.scrollY < window.innerHeight);
         });
     }, []);
 
-    return <header className={full ? "full" : undefined}>
+    return <header className={full ? "full" : "basic"}>
         <h1>Avery Keuben</h1>
     </header>
 }

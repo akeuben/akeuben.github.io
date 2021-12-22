@@ -1,11 +1,23 @@
+@keyframes popin {
+    from {top:-64px}
+    to {top:0px;}
+}
+
 header {
     width: 100vw;
     height: 64px;
-    background-color: #12121288;
     backdrop-filter: blur(10px);
     transition: background-color 0.5s ease-in-out;
     position: sticky;
     top: 0px;
+}
+
+header.basic {
+    top: -100vh;
+    animation-name: popin;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
 }
 
 h1 {
@@ -17,7 +29,6 @@ h1 {
 
 header.full {
     position: absolute;
-    background-color: transparent;
     transition: background-color 0.5s ease-in-out;
     width: 100vw;
     height: 100vh;
