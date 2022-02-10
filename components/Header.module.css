@@ -1,0 +1,41 @@
+.header {
+    display:grid;
+    grid-template-columns: 240px 1fr repeat(3, 100px);
+    width: 100%;
+    height: 64px;
+    position: sticky;
+    z-index: 10000;
+    top: 0px;
+    background-color: rgba(16, 16, 16, 0.75);
+    backdrop-filter: blur(20px);
+    align-items: center;
+    justify-content: center;
+}
+.header>h1 {
+    position: relative;
+    grid-column: 0/0;
+    top: 0px;
+    margin: 0px;
+    padding: 11px;
+    color: white;
+    font-size: 2em;
+    background: var(--primary-colour);
+    border-radius: 0px 20px 20px 0px;
+}
+
+.header>a {
+    color: white;
+    border-bottom: 5px solid var(--primary-colour);
+    text-align: left;
+    width: fit-content;
+    max-width: 0px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: max-width 0.5s ease-in-out,
+                color 0.5s ease-in-out;
+}
+
+.header>a:hover {
+    max-width: 75px;
+    color: rgb(200, 200, 200);
+}
