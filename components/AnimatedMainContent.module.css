@@ -1,0 +1,7 @@
+.main {
+    padding-top: 50px;
+}
+
+.main>h1,.main>p,.main>section {
+    padding: 10px 50px;
+}
