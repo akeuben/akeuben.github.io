@@ -15,7 +15,7 @@ export default class WebGLBackground {
 
     private legacyRender: boolean = false;
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(canvas: HTMLCanvasElement, mode: 'main' | 'sub') {
         this.canvas = canvas;
         this.gl = this.canvas.getContext("webgl2");
 
@@ -27,7 +27,7 @@ export default class WebGLBackground {
         this.gl?.enable(this.gl.DEPTH_TEST);
 
         this.scene.push(new Earth(this.gl as WebGL2RenderingContext));
-        this.scene.push(new CameraController(this.gl as WebGL2RenderingContext));
+        this.scene.push(new CameraController(this.gl as WebGL2RenderingContext, mode));
         this.scene.push(Star.create(this.gl as WebGL2RenderingContext));
         //this.scene.push(Clouds.create(this.gl as WebGL2RenderingContext));
     }

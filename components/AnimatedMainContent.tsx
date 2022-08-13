@@ -18,4 +18,10 @@ const AnimatedMainContent = (props: any) => {
     )
 }
 
+export const StaticMainContent = (props: any) => {
+    return <main className={style.static}>
+        {props.children}
+    </main>;    
+}
+
 export default AnimatedMainContent;

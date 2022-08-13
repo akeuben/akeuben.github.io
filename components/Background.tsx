@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import WebGLBackground from "../graphics/WebGLBackground";
 import style from "./Background.module.css"
 
-function Background() {
+function Background({mode}: {mode: 'main' | 'sub'}) {
 
     const canvas = useRef<HTMLCanvasElement>(null);
 
@@ -15,7 +15,7 @@ function Background() {
     useEffect(() => {
         //Create our background renderer
         if(canvas.current && !backgroundEffect) {
-            setBackgroundEffect(new WebGLBackground(canvas.current));
+            setBackgroundEffect(new WebGLBackground(canvas.current, mode));
         }
 
         let animationFrameId: number;

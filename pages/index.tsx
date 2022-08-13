@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 		<h2>Full Stack Software Developer</h2>
 	</div>
 	<ScrollButton />
-	<Background />
+	<Background mode='main'/>
 	<AnimatedMainContent>
 		<h1>My Portfolio</h1>
 		
