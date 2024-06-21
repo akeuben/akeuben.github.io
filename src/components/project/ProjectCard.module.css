@@ -1,0 +1,48 @@
+.project {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    background: var(--background-secondary-color);
+    overflow: hidden;
+    border-radius: 10px;
+    min-width: min-content;
+}
+
+.img {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    min-height: 300px
+}
+
+.content {
+    padding: 20px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: min-content auto;
+    margin: 10px 0px;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+}
+
+.tag {
+    font-size: 0.8em;
+    padding: 5px;
+    background: var(--background-tertiary-color);
+    border-radius: 10px;
+}
+
+.actions {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: start;
+}

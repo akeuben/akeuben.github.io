@@ -1,0 +1,103 @@
+@keyframes type {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 100%;
+    }
+    51% {
+        opacity: 0%;
+    }
+    99% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes down {
+    0% {
+        transform: translateY(0px);
+    }
+    5% {
+        transform: translateY(3px);
+    }
+    10% {
+        transform: translateY(3px);
+    }
+    15% {
+        transform: translateY(0px);
+    }
+    25% {
+        transform: translateY(0px);
+    }
+    30% {
+        transform: translateY(3px);
+    }
+    35% {
+        transform: translateY(3px);
+    }
+    40% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.hero {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 64px);
+
+    align-items: center;
+    justify-content: center;
+
+    background-size: cover;
+    background-position: center center;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+}
+
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(5px);
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+}
+
+.terminal {
+    width: min(calc(64 * (1ch + 0.1rem) + 40px), calc(100vw - 40px));
+    text-wrap: nowrap;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    height: calc(13em * 1.5 + 40px);
+    background: var(--background-secondary-color);
+    box-shadow: 7px 7px 7px -7px black;
+}
+
+.terminal>div {
+    overflow: hidden;
+}
+
+.terminal>div::after {
+    content: "█";
+    animation: type 1s linear infinite;
+}
+
+.hero>span {
+    position: absolute;
+    top: calc(100vh - 192px);
+    font-size: 64px;
+    left: 50%;
+    text-shadow: 3px 3px 7px black;
+    animation: down 2s ease-in-out infinite;
+    cursor: pointer;
+}

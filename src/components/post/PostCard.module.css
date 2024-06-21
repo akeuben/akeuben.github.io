@@ -1,0 +1,46 @@
+.post {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    background: var(--background-secondary-color);
+    overflow: hidden;
+    border-radius: 10px;
+    min-width: min-content;
+}
+
+.content {
+    padding: 20px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    margin: 10px 0px;
+}
+
+.header>h3 {
+    grid-area: 2 / 1 / 2 / 2;
+}
+
+.tags {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+}
+
+.tag {
+    font-size: 0.8em;
+    padding: 5px;
+    background: var(--background-tertiary-color);
+    border-radius: 10px;
+}
+
+.actions {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: start;
+}

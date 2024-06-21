@@ -1,0 +1,5 @@
+.footer {
+    padding: 20px;
+    background: var(--background-secondary-color);
+    width: 100%;
+}

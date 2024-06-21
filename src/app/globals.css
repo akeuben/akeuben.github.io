@@ -1,33 +1,113 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --background-primary-color: #121212;
+    --background-secondary-color: #1a1a1a;
+    --background-tertiary-color: #262626;
+    --text-primary-color: #ffffff;
+    --text-secondary-color: #dddddd;
+    --text-tertiary-color: #aaaaaa;
+
+    --accent-color: #016ACE;
+
+    --border-color: var(--text-primary-color);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    background: var(--background-primary-color);
+    min-height: 100vh;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+* {
+    color: var(--text-primary-color);
+    letter-spacing: 0.1rem;
+}
+
+main {
+    padding-bottom: 40px;
+    min-height: calc(100vh - 168px);
+}
+
+main>* {
+    margin: 40px;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+a svg:hover {
+    filter: invert(27%) sepia(41%) saturate(3079%) hue-rotate(191deg) brightness(105%) contrast(106%);
+}
+
+button {
+    background: none;
+    border: 2px solid var(--border-color);
+    padding: 10px 40px;
+    margin: 20px 0px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: filter 0.1s linear;
+}
+
+button:hover {
+    filter: brightness(0.7);
+}
+
+/* CSS RESET */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+* {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+    margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+    font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+/*
+  8. Create a root stacking context
+*/
+#root, #__next {
+    isolation: isolate;
 }
