@@ -6,7 +6,7 @@ export const PostGrid = ({count}: {count?: number}) => {
 
     let files = fs.readdirSync("public/posts/", {
         recursive: true
-    });
+    }).filter(file => file.toString().endsWith(".md"));
 
     const creationDate: Record<string, Date> = {};
 
