@@ -23,14 +23,9 @@ export const PostCard = ({postUrl}: {postUrl: Post}) => {
     }
 
 
-    let preview = post.contentHtml.split(/<h[0-9]>/)[0];
-    if(preview.trim() === "") preview = post.contentHtml.split(/<\/h[0.9]>/)[1]
+    const preview = (/<p>(.*?)<\/p>/g.exec(post.contentHtml) || ["", "No preview availible"])[1];
 
-    try {
-        preview = preview.replaceAll(/<\/?[a-zA-Z0-9]*>/g, "").split(" ").slice(0, 50).join(" ").trim() + "...";
-    } catch(e) {
-        preview = "";
-    }
+    console.log(preview);
 
     return <div className={styles.post}>
         <div className={styles.content}>

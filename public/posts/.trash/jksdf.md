@@ -1,12 +1,12 @@
 ---
-name: Test
+name: Jksdf
 author: Avery Keuben
-date: June 22nd 2024 (1:09 am)
+date: <% tp.file.creation_date(MMMM Do YYYY (hh:mm a)) %>
 tags:
   - test
 ---
 This is a test post to test the markdown rendering of my website.
 
 ```js
-console.log(0<= 1);
+console.log("a");
 ```

@@ -6,7 +6,9 @@ export const PostGrid = ({count}: {count?: number}) => {
 
     let files = fs.readdirSync("public/posts/", {
         recursive: true
-    }).filter(file => file.toString().endsWith(".md"));
+    }).filter(file => file.toString().endsWith(".md"))
+        .filter(file => !file.includes("templates"))
+        .filter(file => !file.includes(".trash"))
 
     const creationDate: Record<string, Date> = {};
 
@@ -14,7 +16,7 @@ export const PostGrid = ({count}: {count?: number}) => {
 
     files = files.sort((a, b) => creationDate[b.toString()].getTime() - creationDate[a.toString()].getTime());
 
-    console.log(files)
+    console.log(creationDate)
 
     return <div className={styles["post-grid"]}>
         {

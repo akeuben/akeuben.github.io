@@ -6,12 +6,6 @@ tags:
     - security
     - development
 ---
-This is a test
-
-```js
-console.log("test")
-```
-
 Files are a part of almost every computer program, but failing to verify the security and integrity of these files can lead to malware, data breaches, privacy violations, and many other security breaches. In particular, in this article, we will look at two different instances of hackers achieving remote code execution (RCE) on a target machine. The first will consider hackers taking control of a web server, while the second concerns end users using desktop applications.
 
 # What is Remote Code Execution?
