@@ -1,0 +1,25 @@
+.titleLine {
+    margin-bottom: 0px;
+}
+
+
+.authorLine {
+    display: flex;
+    gap: 10px;
+    margin-top: 0px;
+    font-size: 1em;
+}
+
+.authorLine>* {
+    color: var(--text-tertiary-color);
+}
+
+
+.page :global div>.MathJax>* {
+    width: 100%;
+}
+
+.page :global p>.MathJax {
+    display: inline-block;
+    margin-bottom: -4px;
+}

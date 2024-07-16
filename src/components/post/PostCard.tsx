@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "./PostCard.module.css";
 import { Post } from "@/types/Post";
-import { getPostData } from "@/lib/posts";
+import { getPostData } from "@/lib/client/posts";
 import { useEffect, useState } from "react";
 
 export const PostCard = ({postUrl}: {postUrl: Post}) => {
@@ -16,7 +16,7 @@ export const PostCard = ({postUrl}: {postUrl: Post}) => {
             setPost(p);
         }
         run();
-    }, [setPost])
+    }, [setPost, postUrl])
 
     if(!post) {
         return <p>loading</p>
@@ -24,8 +24,6 @@ export const PostCard = ({postUrl}: {postUrl: Post}) => {
 
 
     const preview = (/<p>(.*?)<\/p>/g.exec(post.contentHtml) || ["", "No preview availible"])[1];
-
-    console.log(preview);
 
     return <div className={styles.post}>
         <div className={styles.content}>

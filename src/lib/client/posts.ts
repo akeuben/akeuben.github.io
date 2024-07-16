@@ -1,9 +1,6 @@
-import path from 'path';
 import { remark } from 'remark';
 import html from 'remark-html';
 import matter from "gray-matter";
-
-const postsDirectory = "/posts";
 
 export async function getPostData(id: string) {
   const data = await fetch(`/posts/${id}`);
@@ -22,4 +19,3 @@ export async function getPostData(id: string) {
     data: matterResult.data,
   };
 }
-

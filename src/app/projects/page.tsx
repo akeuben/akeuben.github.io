@@ -1,6 +1,7 @@
 import { ProjectGrid } from "@/components/project/ProjectGrid";
+import { Metadata, ResolvingMetadata } from "next";
 
-export default () => {
+export default function ProjectsPage() {
     return (
         <>
         <main>
@@ -12,4 +13,18 @@ export default () => {
         </main>
         </>
     );
+}
+
+export async function generateMetadata(_: any, parent: ResolvingMetadata): Promise<Metadata> {
+    const parentData = await parent;
+
+    const title = `Projects | ${parentData.title?.absolute}`;
+    
+    return {
+        title: title,
+        openGraph: {
+            type: "website",
+            title: title,
+        }
+    }
 }

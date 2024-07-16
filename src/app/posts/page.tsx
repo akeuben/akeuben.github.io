@@ -1,6 +1,7 @@
 import { PostGrid } from "@/components/post/PostGrid";
+import { Metadata, ResolvingMetadata } from "next";
 
-export default () => {
+export default function PostsPage() {
     return (
         <>
         <main>
@@ -12,4 +13,18 @@ export default () => {
         </main>
         </>
     );
+}
+
+export async function generateMetadata(_: any, parent: ResolvingMetadata): Promise<Metadata> {
+    const parentData = await parent;
+
+    const title = `Posts | ${parentData.title?.absolute}`;
+    
+    return {
+        title: title,
+        openGraph: {
+            type: "website",
+            title: title,
+        }
+    }
 }

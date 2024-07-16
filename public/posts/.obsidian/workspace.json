@@ -90,9 +90,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "ebcecf4371b7565b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "test.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -220,8 +232,9 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "bc3aa69acc13ce04",
+  "active": "ebcecf4371b7565b",
   "lastOpenFiles": [
+    "test.md~",
     "jksdf.md",
     "test.md",
     "templates/post.md",

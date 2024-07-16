@@ -1,10 +1,9 @@
-import { PostCard } from "@/components/post/PostCard";
 import { PostGrid } from "@/components/post/PostGrid";
 import { ProjectGrid } from "@/components/project/ProjectGrid";
 import { Hero } from "@/components/visual/Hero";
 import Link from "next/link";
 
-export default () => {
+export default function HomePage() {
     return (
         <>
         <Hero />

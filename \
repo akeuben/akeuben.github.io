@@ -147,7 +147,7 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 }
 
 mark {
-    background: var(--background-light-color);
+    background: var(--text-tertiary-color);
     border-radius: 5px;
     padding: 0px 5px;
 }
