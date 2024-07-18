@@ -16,7 +16,7 @@ for(let i = 0; i < 100; i++) {
 }
 ```
 
-## Math Rendering!
+# Math Rendering!
 
 Math block:
 $$

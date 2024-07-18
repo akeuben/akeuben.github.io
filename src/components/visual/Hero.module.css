@@ -91,13 +91,3 @@
     content: "█";
     animation: type 1s linear infinite;
 }
-
-.hero>span {
-    position: absolute;
-    top: calc(100vh - 192px);
-    font-size: 64px;
-    left: 50%;
-    text-shadow: 3px 3px 7px black;
-    animation: down 2s ease-in-out infinite;
-    cursor: pointer;
-}

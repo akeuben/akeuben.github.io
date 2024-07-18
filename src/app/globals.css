@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
+@font-face {
+    font-family: 
+}
+
 :root {
     --background-primary-color: #121212;
     --background-secondary-color: #1a1a1a;
@@ -53,6 +57,7 @@ button {
     border-radius: 10px;
     cursor: pointer;
     transition: filter 0.1s linear;
+    text-transform: capitalize;
 }
 
 button:hover {
@@ -145,6 +150,32 @@ code[data-line-numbers-max-digits="2"] > [data-line]::before {
 code[data-line-numbers-max-digits="3"] > [data-line]::before {
     width: 3rem;
 }
+
+div[data-callout=""][data-callout-type="note"] {
+    --title-color: #1b90fe;
+    --background-color: #00284c;
+    --icon: "\0024D8";
+}
+
+div[data-callout=""] {
+    padding: 20px;
+    background: var(--background-color);
+    margin: 20px 0px;
+    border-radius: 10px;
+    --title-color: #fff;
+    --background-color: var(--background-secondary-color);
+}
+
+div[data-callout-title=""] {
+    font-weight: bold;
+    color: var(--title-color);
+    margin-bottom: 10px;
+}
+
+div[data-callout-title=""]::before {
+    content: var(--icon)" ";
+}
+
 
 mark {
     background: var(--background-light-color);

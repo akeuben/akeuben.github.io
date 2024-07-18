@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import styles from "./Hero.module.css";
+import ScrollArrow from "./ScrollArrow";
 
 const str = `
 cat welcome.txt[5]
@@ -65,6 +66,6 @@ export const Hero = () => {
         <div className={styles.terminal}>
             <div dangerouslySetInnerHTML={html} />
         </div>
-        <span onClick={() => window.scroll(window.scrollX, window.innerHeight - 64)}>˯</span>
+        <ScrollArrow />
     </div>
 }

@@ -1,0 +1,39 @@
+@keyframes down {
+    0% {
+        transform: translateY(0px);
+    }
+    5% {
+        transform: translateY(3px);
+    }
+    10% {
+        transform: translateY(3px);
+    }
+    15% {
+        transform: translateY(0px);
+    }
+    25% {
+        transform: translateY(0px);
+    }
+    30% {
+        transform: translateY(3px);
+    }
+    35% {
+        transform: translateY(3px);
+    }
+    40% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.arrow {
+    position: absolute;
+    top: calc(100vh - 192px);
+    font-size: 64px;
+    left: 50%;
+    text-shadow: 3px 3px 7px black;
+    animation: down 2s ease-in-out infinite;
+    cursor: pointer;
+}

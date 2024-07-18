@@ -6,7 +6,7 @@ import { Post } from "@/types/Post";
 import { getPostData } from "@/lib/client/posts";
 import { useEffect, useState } from "react";
 
-export const PostCard = ({postUrl}: {postUrl: Post}) => {
+export const PostCard = ({postUrl}: {postUrl: `${string}.md`}) => {
 
     const [post, setPost] = useState<Awaited<ReturnType<typeof getPostData>> | null>(null)
 
@@ -30,13 +30,13 @@ export const PostCard = ({postUrl}: {postUrl: Post}) => {
             <div className={styles.header}>
                 {post.data.name && <h2>{post.data.name}</h2>}
                 {post.data.author && <h3>{post.data.author}</h3>}
-                <div className={styles.tags}>
-                    {
-                        post.data.tags && post.data.tags.map((tag: string) => <span key={tag} className={styles.tag}>
-                            {tag}
-                        </span>)
-                    }
-                </div>
+            </div>
+            <div className={styles.tags}>
+                {
+                    post.data.tags && post.data.tags.map((tag: string) => <span key={tag} className={styles.tag}>
+                        {tag}
+                    </span>)
+                }
             </div>
             <p>
                 {preview}

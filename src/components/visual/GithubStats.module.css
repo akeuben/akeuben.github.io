@@ -1,0 +1,25 @@
+.stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: var(--background-secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stats>div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.stats>div>span {
+    font-size: 3em;
+    color: var(--accent-color);
+}
+
+.stats>div>p {
+    color: var(--text-tertiary-color);
+}
