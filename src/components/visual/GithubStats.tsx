@@ -63,7 +63,7 @@ export default function GithubStats() {
         }
 
         setTimeout(() => animate(repoCount), 100);
-    }, [displayedTotalContributions, setDisplayedTotalContributions, displayedYearContributions, setDisplayedYearContributions, displayedRepoCount, setDisplayedRepoCount, contributions])
+    }, [displayedTotalContributions, setDisplayedTotalContributions, displayedYearContributions, setDisplayedYearContributions, displayedRepoCount, setDisplayedRepoCount, contributionsThisYear, totalContributions])
 
     // Animation
     useEffect(() => {
@@ -92,7 +92,7 @@ export default function GithubStats() {
             }
             setAnimationState(AnimationState.WAITIING);
         }
-    }, [ref, ref.current, repoCount, displayedTotalContributions, setDisplayedTotalContributions, displayedYearContributions, setDisplayedYearContributions, displayedRepoCount, setDisplayedRepoCount, contributions, animationState, setAnimationState]);
+    }, [ref, repoCount, displayedTotalContributions, setDisplayedTotalContributions, displayedYearContributions, setDisplayedYearContributions, displayedRepoCount, setDisplayedRepoCount, contributionsThisYear, totalContributions, contributions, animationState, setAnimationState]);
 
     return <div className={styles.stats} ref={ref}>
         <div>

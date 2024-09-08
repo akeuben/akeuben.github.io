@@ -34,8 +34,6 @@ export const Timeline = ({events}: {events: TimelineEvent[]}) => {
 
     Object.values(eventsByYear).forEach(eventList => eventList.sort((a, b) => monthNameToIndex(b.start.month) - monthNameToIndex(a.start.month)));
 
-    console.dir(eventsByYear);
-
     return <div className={styles.timeline}>
         {Object.keys(eventsByYear).toSorted((a, b) => parseInt(b) - parseInt(a)).map((year) => 
             <div key={year}>
@@ -68,7 +66,7 @@ const TimelineEventComponent = ({event}: {event: TimelineEvent}) => {
         <i className={styles.time}>{makeReadableDate(event)}</i>
         <p>{event.description}</p>
         {
-            event.relatedProjects && <p>Projects: {event.relatedProjects.map(project => <Link href={`/project/${project}`}>{project}</Link>)}</p>
+            event.relatedProjects && <p>Projects: {event.relatedProjects.map(project => <Link key={project} href={`/project/${project}`}>{project}</Link>)}</p>
         }
     </div>
 }
