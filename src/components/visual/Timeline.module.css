@@ -1,0 +1,48 @@
+.timeline {
+    border-radius: 10px;
+    margin: 20px 0px;
+}
+
+.timelineYearBox {
+    padding: 0px 20px;
+    border-left: 2px dashed gray
+}
+
+.timelineEvent {
+    background: var(--background-secondary-color);
+    margin: 20px 0px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.timelineEvent>b {
+    font-size: 1.5rem;
+}
+
+.timelineEvent>i {
+    color: gray;
+}
+
+.timelineEvent>.time::before {
+    display: inline-block;
+    content: '🗓 ';
+    font-style: normal;
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.timelineEvent>.location::before {
+    display: inline-block;
+    content: '🗺 ';
+    font-style: normal;
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.timelineEvent>p {
+    margin-top: 20px;
+}

@@ -8,6 +8,7 @@ import { unified } from 'unified';
 import remarkParse from "remark-parse";
 import rehypeStringify from "rehype-stringify";
 import rehypeMathjax from "rehype-mathjax";
+import rehypeRaw from 'rehype-raw';
 
 export async function renderMarkdownFile(path: string) {
   const data = fs.readFileSync(`public/${path}.md`);
@@ -18,7 +19,7 @@ export async function renderMarkdownFile(path: string) {
     .use(remarkParse)
     .use(remarkCallout)
     .use(remarkMath)
-    .use(remarkRehype)
+    .use(remarkRehype, {allowDangerousHtml: true})
     .use(rehypePrettyCode, {
         keepBackground: false
     })
@@ -28,6 +29,7 @@ export async function renderMarkdownFile(path: string) {
             displayAlign: "center"
         }
     })
+    .use(rehypeRaw)
     .use(rehypeStringify)
     .process(matterResult.content);
   const content = processedContent.toString();

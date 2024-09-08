@@ -1,0 +1,6 @@
+.portrait {
+    border-radius: 50%;
+    box-shadow: var(--background-secondary-color) 5px 5px 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}

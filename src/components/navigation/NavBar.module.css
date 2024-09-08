@@ -55,6 +55,10 @@
                 padding 0.2s ease-in-out;
 }
 
+.mobile .links>a {
+    width: min-content;
+}
+
 .mobile .links.closed {
     max-height: 0px;
     padding: 0px calc(1ch + 10px + 0.1rem);

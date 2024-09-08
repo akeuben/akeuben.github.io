@@ -1,6 +1,6 @@
 .project {
-    display: grid;
-    grid-template-rows: 1fr min-content;
+    display: flex;
+    flex-direction: column;
     background: var(--background-secondary-color);
     overflow: hidden;
     border-radius: 10px;
@@ -11,11 +11,14 @@
     position: relative;
     background-size: cover;
     background-position: center center;
-    min-height: 300px
+    height: 300px
 }
 
 .content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: min-content;
 }
 
 .header {
@@ -37,9 +40,12 @@
 }
 
 .actions {
+    flex-grow: 2;
     position: relative;
+    padding: 0px 20px;
     display: flex;
     gap: 20px;
     flex-direction: row;
     justify-content: start;
+    align-items: end;
 }

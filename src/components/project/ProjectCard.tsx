@@ -38,13 +38,13 @@ export const ProjectCard = ({projectUrl}: {projectUrl: `${string}.md`}) => {
                     project.data.description
                 }
             </p>
-            <div className={styles.actions}>
-                <Link href={`/project/${projectUrl.replaceAll(".md", "")}`}>
-                    <button>
-                        More
-                    </button>
-                </Link>
-            </div>
+        </div>
+        <div className={styles.actions}>
+            <Link href={`/project/${projectUrl.replaceAll(".md", "")}`}>
+                <button>
+                    More
+                </button>
+            </Link>
         </div>
     </div>
 }

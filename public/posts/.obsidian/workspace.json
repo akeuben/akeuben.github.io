@@ -102,9 +102,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "d901aa0b65821938",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.7"
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -232,7 +242,7 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "ebcecf4371b7565b",
+  "active": "d901aa0b65821938",
   "lastOpenFiles": [
     "test.md",
     "test.md~",
