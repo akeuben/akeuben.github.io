@@ -25,7 +25,7 @@ engine. I based the engine structure (and public API) around other similar engin
 It uses an entity-component based structure, where a scene is built up of GameObjects, which in turn
 have components (logic), and other GameObjects as children.
 
-# Code Snippits & Explaination
+# Code Snippits & Explanation 
 In this next section, I will explain some of the code from the project, as well as give insight
 as to the structure of the engine
 
