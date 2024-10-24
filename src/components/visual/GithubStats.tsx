@@ -3,7 +3,7 @@
 import styles from "./GithubStats.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const GITHUB_USERNAME = "Kappabyte";
+const GITHUB_USERNAME = "akeuben";
 
 interface Contribution {
   date: string;
