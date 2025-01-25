@@ -7,11 +7,12 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export const NavBar = () => {
-    const [isDesktop, setIsDesktop] = useState<boolean>(typeof window != "undefined" ? window.innerWidth >= 700 : true);
+    const [isDesktop, setIsDesktop] = useState<boolean>(false);
     const [hamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
 
     useEffect(() => {
         window.addEventListener('resize', () => setIsDesktop(window.innerWidth >= 700));
+        setIsDesktop(typeof window != "undefined" ? window.innerWidth >= 700 : true);
     }, [setIsDesktop]);
 
     return <>

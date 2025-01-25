@@ -35,10 +35,12 @@ body {
 main {
     padding-bottom: 40px;
     min-height: calc(100vh - 168px);
-}
-
-main>* {
-    margin: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
 }
 
 main>section {
@@ -66,6 +68,16 @@ button {
     cursor: pointer;
     transition: filter 0.1s linear;
     text-transform: capitalize;
+}
+
+button:disabled {
+    cursor: default;
+    border: 2px solid var(--background-light-color);
+    color: var(--background-light-color);
+}
+
+button:disabled:hover {
+    filter: none;
 }
 
 button:hover {

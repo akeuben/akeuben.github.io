@@ -24,4 +24,5 @@ $$
 $$
 where $a_i=a_{i-1}+i$ for all $i\geq 1$ and $a_0=0$
 
-This is it.
+# React Component Rendering
+<turing-machine label="String Detection" machine="/posts/data/test2.turing" tape="mul(3,9)       "/>

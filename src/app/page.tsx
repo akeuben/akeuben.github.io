@@ -10,6 +10,7 @@ import Link from "next/link";
 import { YearsSince } from "@/components/visual/CurrentYear";
 import Image from "next/image";
 import { ProjectCard } from "@/components/project/ProjectCard";
+import { Automota } from "@/components/visual/automota/AutomotaComponent";
 
 const featuredProjects = [
     "mineclone",
@@ -33,6 +34,10 @@ export default function HomePage() {
                         I am always open to learning new technologies and fields when I get the chance.</p>
                 </section>
             </TwoCol>
+            <Automota boardHeight={10} tileSize={20} ruleSet={{
+                born: [3,4],
+                survive: [3,4]
+            }} />
             <TwoCol fit="none">
                 <div>
                     <h1>Experience</h1>

@@ -1,0 +1,60 @@
+.board {
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+    mask-image: linear-gradient(177deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 4px);
+    gap: 4px;
+}
+
+.cell {
+    background: #161616;
+    transition: background 0.25s ease-in-out;
+    transition-delay: var(--delay);
+    width: calc(100% - 4px);
+    aspect-ratio: 1;
+    gap: 4px;
+}
+
+.cell.active {
+    background: #555;
+}
+
+
+.automota i {
+    color: #555;
+    flex-grow: 2;
+    font-size: 0.8em;
+}
+
+.automota button:disabled {
+    transition: color 0s linear;
+    color: #555;
+    cursor: default;
+}
+
+.automota button:disabled:hover {
+    color: #555;
+    filter: none;
+}
+
+.automota button {
+    color: #ccc;
+    flex-grow: 0;
+    border: none;
+    width: min-content;
+    padding: 0px;
+}
+
+.automota>.meta{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+

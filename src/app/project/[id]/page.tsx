@@ -50,7 +50,11 @@ export default async function ProjectPage({params}: {params: {id: string}}) {
         </div>
         <main>
             <h1 className={styles.title}>{project.metadata.name}</h1>
-            <div className={contentStyles.content} dangerouslySetInnerHTML={{__html: project.content}} />
+            <div className={contentStyles.content}>
+                {
+                    project.content
+                }
+            </div>
         </main>
     </>
 }

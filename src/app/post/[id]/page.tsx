@@ -10,16 +10,12 @@ export async function generateMetadata({params}: any, parent: ResolvingMetadata)
     const post = await renderMarkdownFile(`posts/${params.id}`);
     
     const title = `${post.metadata.name || "Post"} | ${parentData.title?.absolute}`;
-    const preview = (/<p>(.*?)<\/p>/g.exec(post.content) || ["", undefined])[1];
-
     
     return {
         title: title,
-        description: preview,
         openGraph: {
             type: "article",
             title: title,
-            description: preview,
             authors: post.metadata.author,
             publishedTime: post.metadata.date
         }
@@ -29,14 +25,18 @@ export async function generateMetadata({params}: any, parent: ResolvingMetadata)
 export default async function PostPage({params}: {params: {id: string}}) {
     const post = await renderMarkdownFile(`posts/${params.id}`);
 
-    return <main className={styles.page}>
+    return <main className={styles.page} suppressHydrationWarning>
         {post.metadata.name && <h1 className={styles.titleLine}>{post.metadata.name}</h1>}
         <h2 className={styles.authorLine}>
         {post.metadata.author && <span>{post.metadata.author}</span>}
         {post.metadata.author && post.metadata.date && <span>&bull;</span>}
         {post.metadata.date && <span>{post.metadata.date}</span>}
         </h2>
-        <div className={contentStyles.content} dangerouslySetInnerHTML={{__html: post.content}} />
+        <div className={contentStyles.content}>
+            {
+                post.content
+            }
+        </div>
     </main>
 }
 
